@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PCM_Project_Automation" verbose="10" parallel="false"  >
+    <test name="Failed Donation">
+       <classes>
+           <class name="testcases.TestFailedDonationViaNetBanking"></class>
+       </classes>
+    </test>
+
+    <test name="Success Donation">
+        <classes>
+            <class name="testcases.TestSuccessDonationViaNetBanking"></class>
+        </classes>
+    </test>
+</suite>
