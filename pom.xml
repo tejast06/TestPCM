@@ -52,6 +52,8 @@
             <scope>compile</scope>
         </dependency>
 
+
+
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -80,6 +82,9 @@
                     <forkCount>0</forkCount>
                 </configuration>
             </plugin>
+
+
+
         </plugins>
     </build>
 

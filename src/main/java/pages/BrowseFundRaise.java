@@ -29,10 +29,10 @@ public class BrowseFundRaise extends BaseClass {
     public void performFailDonationWithNetBanking() throws InterruptedException {
 
         //Click on Donate button
-        Thread.sleep(7000);
+        Thread.sleep(5000);
         donateBtn.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(4000);
         Set<String> wins = driver.getWindowHandles();
         String newWin;
         Iterator<String> it = wins.iterator();
@@ -42,7 +42,7 @@ public class BrowseFundRaise extends BaseClass {
         }
 
         //Click on Donate button now.
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         donateNow.click();
 
@@ -52,6 +52,7 @@ public class BrowseFundRaise extends BaseClass {
 
 
         for (int i = 2; i <= rowCount; i++) {
+
                 String firstName = xls_reader.getCellData("Sheet1", "FullName", i);
                 String email = xls_reader.getCellData("Sheet1", "Email", i);
                 String mobile = xls_reader.getCellData("Sheet1", "Mobile", i);
@@ -79,11 +80,11 @@ public class BrowseFundRaise extends BaseClass {
 
                 //select net banking option
                 driver.findElement(By.cssSelector("#payment-netbanking-nav")).click();
-                Thread.sleep(5000);
+                Thread.sleep(3000);
 
                 //select SBI
                 driver.findElement(By.cssSelector(".bank-sbi")).click();
-                Thread.sleep(5000);
+                Thread.sleep(3000);
 
                 //Click on contribute button
                 driver.findElement(By.cssSelector("#donate-netbanking-contribute")).click();
@@ -96,12 +97,17 @@ public class BrowseFundRaise extends BaseClass {
                 driver.findElement(By.xpath("//button[text()='Submit']")).click();
 
                 System.out.print(i);
-                Thread.sleep(2000);
-                driver.findElement(By.xpath("(//*[@class='guessUserName'])[2]")).click();
+                Thread.sleep(3000);
 
-                xls_reader.setCellData("Sheet1","status",i,"passed");
+            if (driver.findElement(By.xpath("//i[@class='fas fa-exclamation-triangle text-warning']")).isDisplayed()){
+                xls_reader.setCellData("Sheet1","status",i,"Passed");
             }
+            else {
+                xls_reader.setCellData("Sheet1","status",i,"Failed");
+            }
+            driver.findElement(By.xpath("(//*[@class='guessUserName'])[2]")).click();
         }
+    }
 
     /**
      * Created by TToley
@@ -183,11 +189,6 @@ public class BrowseFundRaise extends BaseClass {
             Thread.sleep(5000);
 
             driver.findElement(By.xpath("(//*[@class='guessUserName'])[4]")).click();
-
-
-
-
-
 
         }
     }
