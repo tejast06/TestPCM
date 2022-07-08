@@ -10,10 +10,12 @@
     <test name="Success Donation">
         <classes>
             <class name="testcases.TestSuccessDonationViaNetBanking"></class>
+        </classes>
+    </test>
+
+    <test name="Success Donation">
+        <classes>
             <class name="testcases.test3"></class>
         </classes>
-        
-
-       
     </test>
 </suite>
