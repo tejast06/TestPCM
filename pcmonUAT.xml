@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="PCM_Project_Automation" verbose="10"  >
+<suite name="TestSuite" verbose="10"  >
     <test name="Failed Donation">
        <classes>
            <class name="testcases.TestFailedDonationViaNetBanking"></class>
