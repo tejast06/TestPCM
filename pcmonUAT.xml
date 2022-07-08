@@ -17,5 +17,6 @@
         <classes>
             <class name="testcases.test3"></class>
         </classes>
+
     </test>
 </suite>
