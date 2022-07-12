@@ -21,7 +21,7 @@ public class CustomListeners extends BaseClass implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println();
+        System.out.println(result.getTestName());
 
     }
 

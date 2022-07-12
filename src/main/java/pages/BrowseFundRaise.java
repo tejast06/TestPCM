@@ -101,10 +101,10 @@ public class BrowseFundRaise extends BaseClass {
                 Thread.sleep(3000);
 
             if (driver.findElement(By.xpath("//i[@class='fas fa-exclamation-triangle text-warning']")).isDisplayed()){
-                xls_reader.setCellData("Sheet1","status",i,"Passed");
+                xls_reader.setCellData("Sheet1","status",i,"Passed "+ System.getProperty("user.dir"));
             }
             else {
-                xls_reader.setCellData("Sheet1","status",i,"Failed");
+                xls_reader.setCellData("Sheet1","status",i,"Failed" + System.getProperty("user.dir"));
             }
             driver.findElement(By.xpath("(//*[@class='guessUserName'])[2]")).click();
         }

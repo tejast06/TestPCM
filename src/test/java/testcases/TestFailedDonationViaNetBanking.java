@@ -23,6 +23,7 @@ public class TestFailedDonationViaNetBanking extends BaseClass {
 
     @BeforeTest
     public void setUp() throws IOException {
+
         //Launch the chrome browser
         initialization();
         homePage = new HomePage();
@@ -41,8 +42,8 @@ public class TestFailedDonationViaNetBanking extends BaseClass {
     public void enterSlugAndClickOnSearchButton() throws InterruptedException, IOException {
         Thread.sleep(2000);
         //Enter 'Help Aahaan raise funds' on search field and click on search button.
-        //browseFundRaise = homePage.enterTextOnFieldAncClick();
-        sendKeysOn(driver, homePage.searchField,10,"test","searchField");
+        browseFundRaise = homePage.enterTextOnFieldAncClick();
+
 
 
 
@@ -53,7 +54,6 @@ public class TestFailedDonationViaNetBanking extends BaseClass {
         browseFundRaise.performFailDonationWithNetBanking();
 
     }
-
     @AfterTest
     public void closeTheBrowser(){
         driver.quit();
