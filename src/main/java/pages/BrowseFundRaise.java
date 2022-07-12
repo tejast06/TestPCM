@@ -104,7 +104,7 @@ public class BrowseFundRaise extends BaseClass {
                 xls_reader.setCellData("Sheet1","status",i,"Passed "+ System.getProperty("user.dir"));
             }
             else {
-                xls_reader.setCellData("Sheet1","status",i,"Failed" + System.getProperty("user.dir"));
+                xls_reader.setCellData("Sheet1","status",i,"Failed");
             }
             driver.findElement(By.xpath("(//*[@class='guessUserName'])[2]")).click();
         }
