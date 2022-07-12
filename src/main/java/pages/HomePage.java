@@ -13,10 +13,10 @@ public class HomePage extends BaseClass {
     String path = System.getProperty("user.dir");
 
     @FindBy(css = "[type='text']")
-    WebElement searchField;
+    public WebElement searchField;
 
     @FindBy(xpath = "//button[@id='nav-search-btn']")
-    WebElement searchBtn;
+    public WebElement searchBtn;
 
     public HomePage() throws IOException {
         PageFactory.initElements(driver,this);
@@ -35,11 +35,7 @@ public class HomePage extends BaseClass {
         Xls_Reader xls_reader = new Xls_Reader(path+"\\src\\main\\java\\TestData\\data.xlsx");
         String searchTxt = xls_reader.getCellData("Sheet1","slug",2);
         searchField.sendKeys(searchTxt);
-        Thread.sleep(2000);
         searchBtn.click();
         return new BrowseFundRaise();
     }
-
-
-
 }

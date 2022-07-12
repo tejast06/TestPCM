@@ -1,16 +1,19 @@
 package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Platform;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -43,5 +46,33 @@ public class BaseClass {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
+    }
+
+    public void getFailedScreenShot(String methodName) throws IOException {
+        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file,new File(path+"\\src\\main\\java\\screenshot\\"+methodName+".jpeg"));
+    }
+
+    public  void sendKeysOn(WebDriver driver, WebElement element, int timeout, String value, String name)throws IOException{
+        if(element.isDisplayed())
+        {
+            new WebDriverWait(driver,timeout).until(ExpectedConditions.visibilityOf(element));
+            element.click();
+            element.clear();
+            element.sendKeys(value);
+
+        }
+        else {
+            //Copy the file to a location and use try catch block to handle exception
+            try {
+                TakesScreenshot ts=(TakesScreenshot)driver;
+                File source=ts.getScreenshotAs(OutputType.FILE);
+                String destination=System.getProperty("user.dir")+"\\reports\\"+name+".png";
+                FileUtils.copyFile(source, new File(destination));
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+            element.sendKeys(value);
+        }
     }
 }

@@ -29,7 +29,6 @@ public class BrowseFundRaise extends BaseClass {
     public void performFailDonationWithNetBanking() throws InterruptedException {
 
         //Click on Donate button
-        Thread.sleep(5000);
         donateBtn.click();
 
         Thread.sleep(4000);
@@ -67,8 +66,10 @@ public class BrowseFundRaise extends BaseClass {
                 //enter phone number
                 driver.findElement(By.xpath("//input[@id='mobile']")).sendKeys(mobile);
 
-                //enter city
-                driver.findElement(By.cssSelector("#city_text")).sendKeys(city);
+                //If city field is displayed, enter city name or else move
+                if(driver.findElement(By.cssSelector("#city_text")).isDisplayed()){
+                    driver.findElement(By.cssSelector("#city_text")).sendKeys(city);
+                }
 
                 //click on yes for 'Are you an indian citizen
                 JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -118,10 +119,8 @@ public class BrowseFundRaise extends BaseClass {
     public void performSuccessDonationWithNetBanking() throws InterruptedException, IOException {
 
         //Click on Donate button
-        Thread.sleep(7000);
         donateBtn.click();
 
-        Thread.sleep(5000);
         Set<String> wins = driver.getWindowHandles();
         String newWin;
         Iterator<String> it = wins.iterator();
@@ -131,8 +130,6 @@ public class BrowseFundRaise extends BaseClass {
         }
 
         //Click on Donate button now.
-        Thread.sleep(5000);
-
         donateNow.click();
 
         Xls_Reader xls_reader = new Xls_Reader(path+"\\src\\main\\java\\TestData\\data.xlsx");
@@ -153,8 +150,10 @@ public class BrowseFundRaise extends BaseClass {
             //enter phone number
             driver.findElement(By.xpath("//input[@id='mobile']")).sendKeys(mobile);
 
-            //enter city
-            driver.findElement(By.cssSelector("#city_text")).sendKeys(city);
+            //If city field is displayed, enter city name or else move
+            if(driver.findElement(By.cssSelector("#city_text")).isDisplayed()){
+                driver.findElement(By.cssSelector("#city_text")).sendKeys(city);
+            }
 
             //click on yes for 'Are you an indian citizen
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -162,19 +161,19 @@ public class BrowseFundRaise extends BaseClass {
 
             //click on donate button
             driver.findElement(By.cssSelector("#story-popup-donate-button")).click();
-            Thread.sleep(2000);
+
 
             //select net banking option
             driver.findElement(By.cssSelector("#payment-netbanking-nav")).click();
-            Thread.sleep(3000);
+
 
             //select SBI
             driver.findElement(By.cssSelector(".bank-sbi")).click();
-            Thread.sleep(3000);
+
 
             //Click on contribute button
             driver.findElement(By.cssSelector("#donate-netbanking-contribute")).click();
-            Thread.sleep(3000);
+
 
             //Select 'Failure' option from the dropdown
             driver.findElement(By.xpath("//select[@id='BankStatus']/option[text()='Success']")).click();
@@ -182,11 +181,15 @@ public class BrowseFundRaise extends BaseClass {
             //click on submit button
             driver.findElement(By.xpath("//button[text()='Submit']")).click();
 
-            System.out.print(i);
-            Thread.sleep(2000);
+            if (driver.findElement(By.xpath("//div[text()='Give Every Month (GEM)']")).isDisplayed()){
+                xls_reader.setCellData("Sheet1","status",i,"Passed");
+            }
+            else {
+                xls_reader.setCellData("Sheet1","status",i,"Failed");
+            }
 
             driver.navigate().to("https://whitehat.impactguru.com/fundraiser/help-aahaan?utm_source=browse&utm_medium=donate_button&utm_campaign=help-aahaan&iglsmp=1");
-            Thread.sleep(5000);
+
 
             driver.findElement(By.xpath("(//*[@class='guessUserName'])[4]")).click();
 
