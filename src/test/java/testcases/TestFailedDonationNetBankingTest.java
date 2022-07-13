@@ -13,12 +13,12 @@ import pages.HomePage;
 import java.io.IOException;
 
 @Listeners(CustomListeners.class)
-public class TestFailedDonationViaNetBanking extends BaseClass {
+public class TestFailedDonationNetBankingTest extends BaseClass {
 
     public HomePage homePage;
     private BrowseFundRaise browseFundRaise;
 
-    public TestFailedDonationViaNetBanking() throws IOException {
+    public TestFailedDonationNetBankingTest() throws IOException {
     }
 
     @BeforeTest
@@ -43,10 +43,6 @@ public class TestFailedDonationViaNetBanking extends BaseClass {
         Thread.sleep(2000);
         //Enter 'Help Aahaan raise funds' on search field and click on search button.
         browseFundRaise = homePage.enterTextOnFieldAncClick();
-
-
-
-
     }
 
     @Test(priority = 3)

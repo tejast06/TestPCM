@@ -3,13 +3,13 @@
 <suite name="PCM_Automation" verbose="10"  >
     <test name="Failed Donation">
        <classes>
-           <class name="testcases.TestFailedDonationViaNetBanking"></class>
+           <class name="testcases.TestFailedDonationNetBankingTest"></class>
        </classes>
     </test>
 
     <test name="Success Donation">
         <classes>
-            <class name="testcases.TestSuccessDonationViaNetBanking"></class>
+            <class name="testcases.TestSuccessDonationNetBankingTest"></class>
         </classes>
     </test>
 </suite>

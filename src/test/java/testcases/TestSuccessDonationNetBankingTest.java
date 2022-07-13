@@ -1,20 +1,23 @@
 package testcases;
 
 import base.BaseClass;
+import listeners.CustomListeners;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.BrowseFundRaise;
 import pages.HomePage;
 
 import java.io.IOException;
 
-public class TestSuccessDonationViaNetBanking extends BaseClass {
+@Listeners(CustomListeners.class)
+public class TestSuccessDonationNetBankingTest extends BaseClass {
     public HomePage homePage;
     private BrowseFundRaise browseFundRaise;
 
-    public TestSuccessDonationViaNetBanking() throws IOException {
+    public TestSuccessDonationNetBankingTest() throws IOException {
     }
 
     @BeforeTest
@@ -35,13 +38,14 @@ public class TestSuccessDonationViaNetBanking extends BaseClass {
 
     @Test(priority = 2)
     public void enterSlugAndClickOnSearchButton() throws InterruptedException, IOException {
-        Thread.sleep(2000);
         //Enter 'Help Aahaan raise funds' on search field and click on search button.
         browseFundRaise = homePage.enterTextOnFieldAncClick();
+
     }
 
     @Test(priority = 3)
     public void performFailedDonation() throws InterruptedException, IOException {
+
         browseFundRaise.performSuccessDonationWithNetBanking();
 
     }
@@ -50,6 +54,4 @@ public class TestSuccessDonationViaNetBanking extends BaseClass {
     public void closeTheBrowser(){
         driver.quit();
     }
-
-
 }

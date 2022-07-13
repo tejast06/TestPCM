@@ -101,7 +101,7 @@ public class BrowseFundRaise extends BaseClass {
                 Thread.sleep(3000);
 
             if (driver.findElement(By.xpath("//i[@class='fas fa-exclamation-triangle text-warning']")).isDisplayed()){
-                xls_reader.setCellData("Sheet1","status",i,"Passed "+ System.getProperty("user.dir"));
+                xls_reader.setCellData("Sheet1","status",i,"Passed");
             }
             else {
                 xls_reader.setCellData("Sheet1","status",i,"Failed");
@@ -173,7 +173,6 @@ public class BrowseFundRaise extends BaseClass {
 
             //Click on contribute button
             driver.findElement(By.cssSelector("#donate-netbanking-contribute")).click();
-
 
             //Select 'Failure' option from the dropdown
             driver.findElement(By.xpath("//select[@id='BankStatus']/option[text()='Success']")).click();
