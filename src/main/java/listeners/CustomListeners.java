@@ -15,13 +15,18 @@ public class CustomListeners extends BaseClass implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("Test start");
+
+        String testCaseName =result.getMethod().getMethodName();
+
+        System.out.println("Test start" + testCaseName);
 
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println(result.getTestName());
+        String testCaseName =result.getMethod().getMethodName();
+
+        System.out.println("Test success" + testCaseName);
 
     }
 
@@ -32,16 +37,21 @@ public class CustomListeners extends BaseClass implements ITestListener {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        String testCaseName =result.getMethod().getMethodName();
+
+        System.out.println("Test failed" + testCaseName);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
+        String testCaseName =result.getMethod().getMethodName();
+
+        System.out.println("Test skipped" + testCaseName);
 
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 
     @Override
