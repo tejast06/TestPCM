@@ -81,6 +81,10 @@
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>pcmonUAT.xml</suiteXmlFile>
+                        <classes>
+                            <class name="testcases.TestSuccessDonationNetBankingTest"></class>
+                            <class name="testcases.TestFailedDonationNetBankingTest"></class>
+                        </classes>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
