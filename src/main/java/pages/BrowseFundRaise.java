@@ -56,6 +56,7 @@ public class BrowseFundRaise extends BaseClass {
                 String email = xls_reader.getCellData("Sheet1", "Email", i);
                 String mobile = xls_reader.getCellData("Sheet1", "Mobile", i);
                 String city = xls_reader.getCellData("Sheet1", "City", i);
+                String amount = xls_reader.getCellData("Sheet1","Amount",i);
 
                 //enter full name.
                 driver.findElement(By.cssSelector("#full_name")).sendKeys(firstName);
@@ -65,6 +66,10 @@ public class BrowseFundRaise extends BaseClass {
 
                 //enter phone number
                 driver.findElement(By.xpath("//input[@id='mobile']")).sendKeys(mobile);
+
+                //enter amount
+                driver.findElement(By.cssSelector("#story_popup_donation_amount")).clear();
+                driver.findElement(By.cssSelector("#story_popup_donation_amount")).sendKeys(amount);
 
                 //If city field is displayed, enter city name or else move
                 if(driver.findElement(By.cssSelector("#city_text")).isDisplayed()){
@@ -140,6 +145,7 @@ public class BrowseFundRaise extends BaseClass {
             String email = xls_reader.getCellData("Sheet1", "Email", i);
             String mobile = xls_reader.getCellData("Sheet1", "Mobile", i);
             String city = xls_reader.getCellData("Sheet1", "City", i);
+            String amount = xls_reader.getCellData("Sheet1","Amount",i);
 
             //enter full name.
             driver.findElement(By.cssSelector("#full_name")).sendKeys(firstName);
@@ -149,6 +155,10 @@ public class BrowseFundRaise extends BaseClass {
 
             //enter phone number
             driver.findElement(By.xpath("//input[@id='mobile']")).sendKeys(mobile);
+
+            //enter amount
+            driver.findElement(By.cssSelector("#story_popup_donation_amount")).clear();
+            driver.findElement(By.cssSelector("#story_popup_donation_amount")).sendKeys(amount);
 
             //If city field is displayed, enter city name or else move
             if(driver.findElement(By.cssSelector("#city_text")).isDisplayed()){
