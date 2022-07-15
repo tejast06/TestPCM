@@ -16,17 +16,13 @@ public class CustomListeners extends BaseClass implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
 
-        String testCaseName =result.getMethod().getMethodName();
 
-        System.out.println("Test start " + testCaseName);
 
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        String testCaseName =result.getMethod().getMethodName();
 
-        System.out.println("Test success " + testCaseName);
 
     }
 
@@ -44,9 +40,7 @@ public class CustomListeners extends BaseClass implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        String testCaseName =result.getMethod().getMethodName();
 
-        System.out.println("Test skipped " + testCaseName);
 
     }
 
