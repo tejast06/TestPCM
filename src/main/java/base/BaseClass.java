@@ -21,58 +21,65 @@ public class BaseClass {
 
     public static WebDriver driver;
     public static Properties prop;
-    //public static String nodeUrl = "http://10.10.10.121:5555/wd/hub";
-//    public static String nodeUrl1 = " http://10.10.10.214:5555/wd/hub";
+
 
     String path = System.getProperty("user.dir");
 
     public BaseClass() throws IOException {
         prop = new Properties();
-        FileInputStream fileInputStream = new FileInputStream(path+"\\src\\main\\java\\config\\config.properties");
+        FileInputStream fileInputStream = new FileInputStream(path + "\\src\\main\\java\\config\\config.properties");
         prop.load(fileInputStream);
     }
 
-    public  static void initialization() throws MalformedURLException {
+    public static void initialization() throws MalformedURLException {
 
         WebDriverManager.chromedriver().setup();
-        driver= new ChromeDriver();
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//        capabilities.setBrowserName("chrome");
-//        capabilities.setPlatform(Platform.WIN10);
-//        //driver = new RemoteWebDriver(new URL(nodeUrl),capabilities);
-//        driver = new RemoteWebDriver(new URL(nodeUrl1),capabilities);
-
+        driver = new ChromeDriver();
         driver.get(prop.getProperty("url"));
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
+    //This method captures screen shot
     public void getFailedScreenShot(String methodName) throws IOException {
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file,new File(path+"\\src\\main\\java\\screenshot\\"+methodName+".jpeg"));
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File(path + "\\src\\main\\java\\screenshot\\" + methodName + ".jpeg"));
     }
 
-    public  void sendKeysOn(WebDriver driver, WebElement element, int timeout, String value, String name)throws IOException{
-        if(element.isDisplayed())
-        {
-            new WebDriverWait(driver,timeout).until(ExpectedConditions.visibilityOf(element));
+
+    public void clickOn(WebDriver driver, WebElement element, int timeout, String name) throws IOException {
+        try {
+            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
+            element.click();
+            System.out.println("Successfully Click on To Element " + name);
+        } catch (Exception e) {
+
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File source = ts.getScreenshotAs(OutputType.FILE);
+            String destination = System.getProperty("user.dir") + "\\reports\\" + name + ".png";
+            FileUtils.copyFile(source, new File(destination));
+            System.out.println("Fail Click on To Element " + name);
+            element.click();
+        }
+    }
+
+    public void sendKeysOn(WebDriver driver, WebElement element, int timeout, String value, String name) throws IOException {
+        try {
+            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
             element.click();
             element.clear();
             element.sendKeys(value);
+            System.out.println("Successfully Sent value" + value + " To Element " + name);
+        } catch (Exception e) {
 
-        }
-        else {
-            //Copy the file to a location and use try catch block to handle exception
-            try {
-                TakesScreenshot ts=(TakesScreenshot)driver;
-                File source=ts.getScreenshotAs(OutputType.FILE);
-                String destination=System.getProperty("user.dir")+"\\reports\\"+name+".png";
-                FileUtils.copyFile(source, new File(destination));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File source = ts.getScreenshotAs(OutputType.FILE);
+            String destination = System.getProperty("user.dir") + "\\reports\\" + name + ".png";
+            FileUtils.copyFile(source, new File(destination));
+            System.out.println("Fail to Send value" + value + " To Element " + name);
             element.sendKeys(value);
+
         }
     }
 }
