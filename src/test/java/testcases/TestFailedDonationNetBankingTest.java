@@ -47,12 +47,13 @@ public class TestFailedDonationNetBankingTest extends BaseClass {
         Thread.sleep(2000);
         System.out.println("Enter slug on search field and click on search button");
         //Enter 'Help Aahaan raise funds' on search field and click on search button.
+
         browseFundRaise = homePage.enterTextOnFieldAncClick();
         System.out.println("Slug entered on search bar and search button clicked successfully");
     }
 
     @Test(priority = 3)
-    public void performFailedDonation() throws InterruptedException {
+    public void performFailedDonation() throws InterruptedException, IOException {
         System.out.println("Perform fail donation");
         browseFundRaise.performFailDonationWithNetBanking();
         System.out.println("Failed donation performed successfully");
